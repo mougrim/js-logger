@@ -109,7 +109,7 @@ export default class Logger {
      * @return {Number}
      */
     static levelToInt(levelString) {
-        let levelsMap = this.LEVELS_MAP;
+        const levelsMap = this.LEVELS_MAP;
         if (!levelsMap.has(levelString)) {
             this.logFallback(`Unknown logger level '${levelString}'`);
             return this.LEVEL_OFF;
@@ -154,9 +154,9 @@ export default class Logger {
             } else {
                 loggerConfig = this.config.defaultLoggerConfig;
             }
-            for (let configKey in loggerConfig) {
+            for (const configKey in loggerConfig) {
                 if (loggerConfig.hasOwnProperty(configKey)) {
-                    let setter = `set${configKey[0].toUpperCase()}${configKey.slice(1)}`;
+                    const setter = `set${configKey[0].toUpperCase()}${configKey.slice(1)}`;
                     this.loggers[name][setter](loggerConfig[configKey]);
                 }
             }
@@ -289,7 +289,7 @@ export default class Logger {
      * @param {[]|{}|Map} [context]
      */
     log(levelString, message, context) {
-        let level = Logger.levelToInt(levelString);
+        const level = Logger.levelToInt(levelString);
         if (this.getMinLevel() > level || this.getMaxLevel() < level) {
             return;
         }
@@ -302,8 +302,8 @@ export default class Logger {
             message.push(context);
         }
 
-        let date = new Date();
-        let dateString = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        const date = new Date();
+        const dateString = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
         console.log(`[${dateString}] ${this.getName()}.${levelString}`, cloneDeep(message)); // jshint ignore:line
     }
