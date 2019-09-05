@@ -131,6 +131,10 @@ export default class Logger {
             this.loggers = {};
         }
         if (!this.hasOwnProperty('config')) {
+            /**
+             * @private
+             * @type {{defaultLoggerConfig: {minLevel: Number, maxLevel: Number}, loggers: Object.<String, {minLevel: Number, maxLevel: Number}>}}
+             */
             this.config = {};
         }
         if (!this.config.hasOwnProperty('defaultLoggerConfig')) {
