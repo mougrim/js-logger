@@ -143,7 +143,7 @@ export default class Logger {
      * @return {Map}
      */
     static get LEVELS_MAP() {
-        if (!this.hasOwnProperty('_LEVELS_MAP')) {
+        if (this._LEVELS_MAP === undefined) {
             /**
              * @type {Map}
              * @private
@@ -188,35 +188,35 @@ export default class Logger {
      * @returns {module:mougrim/logger/Logger.Logger}
      */
     static getLogger(name) {
-        if (!this.hasOwnProperty('loggers')) {
+        if (this.loggers === undefined) {
             /**
              * @private
              * @type {{}}
              */
             this.loggers = {};
         }
-        if (!this.hasOwnProperty('config')) {
+        if (this.config === undefined) {
             /**
              * @private
              * @type {{defaultLoggerConfig: {[minLevel]: Number, [maxLevel]: Number}, loggers: Object.<String, {[minLevel]: Number, [maxLevel]: Number}>}}
              */
             this.config = {};
         }
-        if (!this.config.hasOwnProperty('defaultLoggerConfig')) {
+        if (this.config.defaultLoggerConfig === undefined) {
             this.config.defaultLoggerConfig = {
                 'minLevel': this.LEVEL_NOTICE,
             };
         }
-        if (!this.config.hasOwnProperty('loggers')) {
+        if (this.config.loggers === undefined) {
             this.config.loggers = {};
         }
-        if (!this.loggers.hasOwnProperty(name)) {
+        if (this.loggers[name] === undefined) {
             this.loggers[name] = new this(name);
             let loggerConfig;
-            if (this.config.loggers.hasOwnProperty(name)) {
+            if (this.config.loggers[name] !== undefined) {
                 loggerConfig = this.config.loggers[name];
                 for (const configKey in this.config.defaultLoggerConfig) {
-                    if (this.config.defaultLoggerConfig.hasOwnProperty(configKey) && !loggerConfig.hasOwnProperty(configKey)) {
+                    if (this.config.defaultLoggerConfig[configKey] !== undefined && loggerConfig[configKey] === undefined) {
                         loggerConfig[configKey] = this.config.defaultLoggerConfig[configKey];
                     }
                 }
@@ -224,7 +224,7 @@ export default class Logger {
                 loggerConfig = this.config.defaultLoggerConfig;
             }
             for (const configKey in loggerConfig) {
-                if (loggerConfig.hasOwnProperty(configKey)) {
+                if (loggerConfig[configKey] !== undefined) {
                     const setter = `set${configKey[0].toUpperCase()}${configKey.slice(1)}`;
                     this.loggers[name][setter](loggerConfig[configKey]);
                 }
@@ -236,7 +236,7 @@ export default class Logger {
 
     /**
      * @public
-     * @param {{defaultLoggerConfig: {[minLevel]: Number, [maxLevel]: Number}, loggers: Object.<String, {[minLevel]: Number, [maxLevel]: Number}>}} config
+     * @param {{[defaultLoggerConfig]: {[minLevel]: Number, [maxLevel]: Number}, [loggers]: Object.<String, {[minLevel]: Number, [maxLevel]: Number}>}} config
      */
     static configure(config) {
         this.config = config;
