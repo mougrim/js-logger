@@ -6,6 +6,8 @@ There are next changes:
 - add module js-doc
 - add public/protected js-doc for methods
 - some small js-doc fixes
+- add eslint
+- fix eslint warnings
 
 ### v0.0.3
 
