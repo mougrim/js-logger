@@ -8,6 +8,7 @@ There are next changes:
 - some small js-doc fixes
 - add eslint
 - fix eslint warnings
+- add package-lock.json to .gitignore
 
 ### v0.0.3
 
