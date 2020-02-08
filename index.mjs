@@ -1,74 +1,139 @@
 /**
  * @author Mougrim <rinat@mougrim.ru>
+ * @module mougrim/logger/Logger
  */
 'use strict';
 
 import cloneDeep from './clone-deep.mjs';
 
 /**
- * @class Logger
+ * @memberOf module:mougrim/logger/Logger
  */
 export default class Logger {
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_OFF() {
         return 120000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_OFF() {
         return this.constructor.LEVEL_OFF;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_CRITICAL() {
         return 60000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_CRITICAL() {
         return this.constructor.LEVEL_CRITICAL;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_ERROR() {
         return 50000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_ERROR() {
         return this.constructor.LEVEL_ERROR;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_WARNING() {
         return 40000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_WARNING() {
         return this.constructor.LEVEL_WARNING;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_NOTICE() {
         return 30000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_NOTICE() {
         return this.constructor.LEVEL_NOTICE;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_INFO() {
         return 20000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_INFO() {
         return this.constructor.LEVEL_INFO;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_DEBUG() {
         return 10000;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_DEBUG() {
         return this.constructor.LEVEL_DEBUG;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     static get LEVEL_ALL() {
         return 0;
     }
 
+    /**
+     * @public
+     * @return {number}
+     */
     get LEVEL_ALL() {
         return this.constructor.LEVEL_ALL;
     }
@@ -120,7 +185,7 @@ export default class Logger {
     /**
      * Get logger by name
      * @param {String} name
-     * @returns {Logger}
+     * @returns {module:mougrim/logger/Logger.Logger}
      */
     static getLogger(name) {
         if (!this.hasOwnProperty('loggers')) {
@@ -133,7 +198,7 @@ export default class Logger {
         if (!this.hasOwnProperty('config')) {
             /**
              * @private
-             * @type {{defaultLoggerConfig: {minLevel: Number, maxLevel: Number}, loggers: Object.<String, {minLevel: Number, maxLevel: Number}>}}
+             * @type {{defaultLoggerConfig: {[minLevel]: Number, [maxLevel]: Number}, loggers: Object.<String, {[minLevel]: Number, [maxLevel]: Number}>}}
              */
             this.config = {};
         }
@@ -170,16 +235,16 @@ export default class Logger {
     }
 
     /**
-     * @param {{defaultLoggerConfig: {minLevel: Number, maxLevel: Number}, loggers: Object.<String, {minLevel: Number, maxLevel: Number}>}} config
+     * @public
+     * @param {{defaultLoggerConfig: {[minLevel]: Number, [maxLevel]: Number}, loggers: Object.<String, {[minLevel]: Number, [maxLevel]: Number}>}} config
      */
     static configure(config) {
         this.config = config;
     }
 
     /**
+     * @protected
      * @param {String} name
-     * @constructor
-     * @class Logger
      */
     constructor(name) {
         /**
@@ -200,6 +265,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @returns {String} logger name
      */
     getName() {
@@ -207,6 +273,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @returns {Number} min log level
      */
     getMinLevel() {
@@ -215,8 +282,9 @@ export default class Logger {
 
     /**
      * Set min log level
+     * @public
      * @param {Number} minLevel
-     * @return {Logger}
+     * @return {module:mougrim/logger/Logger.Logger}
      */
     setMinLevel(minLevel) {
         this.minLevel = minLevel;
@@ -224,6 +292,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @returns {Number} max log level
      */
     getMaxLevel() {
@@ -232,14 +301,16 @@ export default class Logger {
 
     /**
      * Set max log level
+     * @public
      * @param {Number} maxLevel
-     * @return {Logger}
+     * @return {module:mougrim/logger/Logger.Logger}
      */
     setMaxLevel(maxLevel) {
         this.maxLevel = maxLevel;
         return this;
     }
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -248,6 +319,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -256,6 +328,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -264,6 +337,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -272,6 +346,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -280,6 +355,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
      */
@@ -288,6 +364,7 @@ export default class Logger {
     }
 
     /**
+     * @public
      * @param {String} levelString
      * @param {[]|*} message messages and variables array
      * @param {[]|{}|Map} [context]
