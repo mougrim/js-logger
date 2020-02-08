@@ -3,12 +3,16 @@
 ### master
 
 There are next changes:
-- add module js-doc
-- add public/protected js-doc for methods
-- some small js-doc fixes
-- add eslint
-- fix eslint warnings
-- add package-lock.json to .gitignore
+
+### v0.0.4
+
+There are next changes:
+- add module js-doc ([#5](https://github.com/mougrim/js-logger/pull/5))
+- add public/protected js-doc for methods ([#5](https://github.com/mougrim/js-logger/pull/5))
+- some small js-doc fixes ([#5](https://github.com/mougrim/js-logger/pull/5))
+- add eslint ([#6](https://github.com/mougrim/js-logger/pull/6))
+- fix eslint warnings ([#6](https://github.com/mougrim/js-logger/pull/6))
+- add package-lock.json to .gitignore ([#7](https://github.com/mougrim/js-logger/pull/7))
 
 ### v0.0.3
 
